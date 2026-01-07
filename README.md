@@ -1,36 +1,72 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# KadArtisan Frontend
 
-## Getting Started
+KadArtisan is a digital platform designed to connect skilled local artisans with customers seeking reliable and verified services.  
+This repository contains the frontend application for the KadArtisan MVP.
 
-First, run the development server:
+The MVP focuses on Kaduna State, with a scalable architecture to support expansion across Northern Nigeria.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🎯 Purpose
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+The frontend application provides:
+- Artisan discovery and search
+- Artisan profile creation and management
+- Customer booking requests
+- Reviews and ratings
+- Admin and artisan dashboards
+- Mobile-first, accessible user experience
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 🧑‍💼 Target Users
 
-To learn more about Next.js, take a look at the following resources:
+- **Artisans** – Create verified profiles, upload work samples, manage bookings
+- **Customers** – Discover artisans, request services, leave reviews
+- **Administrators** – Monitor activity, verify artisans, manage reports
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🧱 Tech Stack (Recommended)
 
-## Deploy on Vercel
+- **Framework:** React / Next.js
+- **Language:** TypeScript
+- **Styling:** Tailwind CSS
+- **State Management:** Redux Toolkit / Zustand
+- **Data Fetching:** Axios / React Query
+- **Forms & Validation:** React Hook Form + Zod
+- **Auth:** JWT-based authentication
+- **Maps (Optional):** Google Maps / Mapbox
+- **UI Components:** Headless UI / ShadCN (optional)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 📐 Key Features (MVP)
+
+- Responsive landing page
+- Artisan registration & login
+- Artisan profile setup (skills, bio, work samples)
+- Artisan discovery by category, location, rating
+- Booking request flow
+- Review & rating UI
+- Artisan dashboard
+- Admin dashboard (basic)
+- Accessibility-focused UI (large tap targets, readable fonts)
+
+---
+
+## 🗂️ Project Structure (Example)
+
+```text
+src/
+├── components/
+├── pages/
+├── features/
+│   ├── auth/
+│   ├── artisans/
+│   ├── bookings/
+│   └── reviews/
+├── services/
+├── hooks/
+├── utils/
+└── styles/
