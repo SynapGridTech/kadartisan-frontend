@@ -67,7 +67,7 @@ const Sidebar = () => {
   ];
 
   return (
-    <aside className="fixed left-0 top-0 h-screen w-64 bg-primary text-white overflow-y-auto">
+    <aside className="fixed left-0 top-0 h-screen w-64 bg-primary text-white overflow-y-auto scrollbar-hide">
       {/* Logo */}
       <div className="p-6 border-b border-green-600">
         <Link href="/dashboard">

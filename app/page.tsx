@@ -116,7 +116,7 @@ export default function Login() {
 
             {/* Remember Me & Forgot Password */}
             <div className="flex items-center justify-between">
-              <label className="flex items-center">
+              <label className="flex items-center cursor-pointer">
                 <input
                   type="checkbox"
                   className="h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
