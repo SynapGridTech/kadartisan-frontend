@@ -33,7 +33,7 @@ const Sidebar = () => {
       title: 'USER MANAGEMENT',
       items: [
         { icon: UsersIcon, label: 'All Users', href: '/dashboard/users' },
-        { icon: CheckBadgeIcon, label: 'Pending Verifications', href: '/dashboard/pending' },
+        { icon: CheckBadgeIcon, label: 'Pending Verifications', href: '/dashboard/verifications' },
       ],
     },
     {
