@@ -97,6 +97,10 @@ export default function VerificationsPage() {
   const [priority, setPriority] = useState('high');
   const [search, setSearch] = useState('');
   const [selectedReview, setSelectedReview] = useState<VerificationRow | null>(null);
+  const [documentPreview, setDocumentPreview] = useState<{
+    title: string;
+    documentType: 'nin' | 'business';
+  } | null>(null);
   const [note, setNote] = useState('');
 
   return (
@@ -220,6 +224,7 @@ export default function VerificationsPage() {
             aria-label="Close verification modal"
             onClick={() => {
               setSelectedReview(null);
+              setDocumentPreview(null);
               setNote('');
             }}
             className="absolute inset-0 bg-black/45"
@@ -231,6 +236,7 @@ export default function VerificationsPage() {
               <button
                 onClick={() => {
                   setSelectedReview(null);
+                  setDocumentPreview(null);
                   setNote('');
                 }}
                 className="rounded-md p-1 text-gray-500 transition hover:bg-gray-100 hover:text-gray-700"
@@ -264,7 +270,16 @@ export default function VerificationsPage() {
                 <div className="grid grid-cols-[130px_1fr] items-center gap-4">
                   <p className="font-semibold text-gray-700">NIN ID:</p>
                   <div>
-                    <button className="rounded-full border border-gray-200 px-5 py-1 text-green-600 hover:bg-gray-50">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setDocumentPreview({
+                          title: 'NIN ID Document',
+                          documentType: 'nin',
+                        })
+                      }
+                      className="rounded-full border border-gray-200 px-5 py-1 text-green-600 hover:bg-gray-50"
+                    >
                       View
                     </button>
                   </div>
@@ -272,7 +287,16 @@ export default function VerificationsPage() {
                 <div className="grid grid-cols-[130px_1fr] items-center gap-4">
                   <p className="font-semibold text-gray-700">Business cert:</p>
                   <div>
-                    <button className="rounded-full border border-gray-200 px-5 py-1 text-green-600 hover:bg-gray-50">
+                    <button
+                      type="button"
+                      onClick={() =>
+                        setDocumentPreview({
+                          title: 'Business Certificate',
+                          documentType: 'business',
+                        })
+                      }
+                      className="rounded-full border border-gray-200 px-5 py-1 text-green-600 hover:bg-gray-50"
+                    >
                       View
                     </button>
                   </div>
@@ -295,6 +319,64 @@ export default function VerificationsPage() {
                 Send a note
               </button>
             </footer>
+          </section>
+        </div>
+      ) : null}
+
+      {documentPreview ? (
+        <div className="fixed inset-0 z-[60] p-2 sm:p-4">
+          <button
+            type="button"
+            aria-label="Close document preview"
+            onClick={() => setDocumentPreview(null)}
+            className="absolute inset-0 bg-black/85"
+          />
+
+          <section className="relative mx-auto h-full max-h-[92vh] w-full max-w-4xl overflow-hidden rounded-sm bg-[#141414] text-white shadow-2xl">
+            <header className="flex items-center justify-end border-b-2 border-sky-500 px-4 py-3">
+              <button
+                type="button"
+                onClick={() => setDocumentPreview(null)}
+                className="rounded-md p-1 text-white/90 transition hover:bg-white/10"
+              >
+                <XMarkIcon className="h-10 w-10" />
+              </button>
+            </header>
+
+            <div className="flex h-[calc(100%-88px)] flex-col items-center justify-center gap-6 px-4 pb-6 pt-5 sm:px-8">
+              <div className="w-full max-w-md rounded-sm bg-white p-5 shadow-lg">
+                <div className="aspect-[3/4] w-full rounded border-[3px] border-green-300 bg-gradient-to-b from-white via-gray-50 to-white p-4 text-center text-gray-800">
+                  <p className="text-xs font-semibold uppercase tracking-wide">Federal Republic of Nigeria</p>
+                  <p className="mt-2 text-base font-bold">Certificate Of Incorporation</p>
+                  <p className="mt-1 text-xs text-gray-500">{documentPreview.title}</p>
+                  <div className="mx-auto mt-6 h-40 w-32 rounded border border-gray-300" />
+                  <p className="mt-4 text-xs text-gray-500">
+                    Preview {documentPreview.documentType === 'nin' ? 'NIN document' : 'business certificate'}
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap items-center justify-center gap-4">
+                <button
+                  type="button"
+                  className="rounded-full bg-green-600 px-7 py-2 text-sm font-semibold text-white hover:bg-green-700"
+                >
+                  Approved
+                </button>
+                <button
+                  type="button"
+                  className="rounded-full border border-gray-400 px-7 py-2 text-sm font-medium text-gray-200 hover:border-gray-200 hover:text-white"
+                >
+                  Request re-upload
+                </button>
+                <button
+                  type="button"
+                  className="rounded-full border border-red-500 px-7 py-2 text-sm font-medium text-red-400 hover:bg-red-500/10"
+                >
+                  Reject
+                </button>
+              </div>
+            </div>
           </section>
         </div>
       ) : null}
