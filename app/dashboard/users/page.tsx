@@ -2,12 +2,12 @@
 
 import { useMemo, useState } from 'react';
 import {
-  ChevronDownIcon,
   EllipsisHorizontalIcon,
   MagnifyingGlassIcon,
   StarIcon,
   XMarkIcon,
 } from '@heroicons/react/24/solid';
+import Dropdown from '@/app/components/ui/Dropdown';
 
 type UserType = 'Artisan' | 'Customer';
 type UserStatus = 'Active' | 'Inactive';
@@ -116,21 +116,14 @@ export default function AllUsersPage() {
     <>
       <div className="space-y-6">
         <section className="flex flex-col gap-3 md:flex-row md:items-end">
-          <label className="flex min-w-40 flex-col gap-1">
-            <span className="text-xs font-semibold uppercase tracking-wide text-gray-500">Typical user types</span>
-            <div className="relative">
-              <select
-                value={selectedUserType}
-                onChange={(event) => setSelectedUserType(event.target.value as UserType | 'All')}
-                className="h-11 w-full appearance-none rounded-md border border-gray-200 bg-white px-3 pr-10 text-sm text-gray-800 outline-none transition focus:ring-2 focus:ring-primary"
-              >
-                <option value="Artisan">Artisan</option>
-                <option value="Customer">Customer</option>
-                <option value="All">All</option>
-              </select>
-              <ChevronDownIcon className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-500" />
-            </div>
-          </label>
+          <Dropdown
+            id="all-users-type"
+            className="min-w-40"
+            label="Typical user types"
+            value={selectedUserType}
+            options={['Artisan', 'Customer', 'All']}
+            onChange={(value) => setSelectedUserType(value as UserType | 'All')}
+          />
 
           <label className="relative w-full max-w-xl">
             <MagnifyingGlassIcon className="pointer-events-none absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
@@ -167,7 +160,11 @@ export default function AllUsersPage() {
               </thead>
               <tbody>
                 {filteredUsers.map((user) => (
-                  <tr key={user.id} className="border-b border-gray-100 bg-white hover:bg-green-50/50">
+                  <tr
+                    key={user.id}
+                    onClick={() => setSelectedUser(user)}
+                    className="cursor-pointer border-b border-gray-100 bg-white hover:bg-green-50/50"
+                  >
                     <td className="px-4 py-3">{user.createdDate}</td>
                     <td className="px-4 py-3">
                       <div className="flex items-center gap-3">
@@ -193,7 +190,10 @@ export default function AllUsersPage() {
                     </td>
                     <td className="px-4 py-3 text-right">
                       <button
-                        onClick={() => setSelectedUser(user)}
+                        onClick={(event) => {
+                          event.stopPropagation();
+                          setSelectedUser(user);
+                        }}
                         className="text-sm text-gray-700 transition hover:text-gray-900"
                       >
                         View
