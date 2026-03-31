@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import {
   Squares2X2Icon,
   ChartBarIcon,
@@ -18,7 +18,7 @@ import {
 } from '@heroicons/react/24/solid';
 
 const Sidebar = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const pathname = usePathname();
 
   const menuSections = [
     {
@@ -85,11 +85,20 @@ const Sidebar = () => {
             <ul className="space-y-2">
               {section.items.map((item) => {
                 const Icon = item.icon;
+                const isActive =
+                  item.href === '/dashboard'
+                    ? pathname === '/dashboard'
+                    : pathname.startsWith(item.href);
+
                 return (
                   <li key={item.href}>
                     <Link
                       href={item.href}
-                      className="flex items-center gap-3 px-4 py-2 rounded-lg hover:bg-green-600 transition-colors"
+                      className={`flex items-center gap-3 rounded-md border-l-4 px-4 py-2 transition-colors ${
+                        isActive
+                          ? 'border-secondary bg-green-600 text-white'
+                          : 'border-transparent text-white hover:border-green-400 hover:bg-green-600/70'
+                      }`}
                     >
                       <Icon className="w-5 h-5" />
                       <span className="text-sm font-medium">{item.label}</span>

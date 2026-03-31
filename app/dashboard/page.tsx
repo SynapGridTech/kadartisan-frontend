@@ -1,7 +1,7 @@
 'use client';
 
-import { useMemo } from 'react';
 import { ChevronDownIcon } from '@heroicons/react/24/solid';
+import TotalUserChart from '@/app/components/charts/TotalUserChart';
 
 interface StatCardProps {
   icon: React.ReactNode;
@@ -114,7 +114,7 @@ export default function Dashboard() {
       <div className="flex items-center justify-between">
         <div>
           <h1 className="text-3xl font-bold text-gray-900">Dashboard Overview</h1>
-          <p className="text-gray-600 text-sm mt-1">Welcome back! Here's what's happening now</p>
+          <p className="text-gray-600 text-sm mt-1">Welcome back! Here&apos;s what&apos;s happening now</p>
         </div>
         <div className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg cursor-pointer hover:bg-gray-50">
           <span className="text-sm font-medium text-gray-700">Month</span>
@@ -131,30 +131,7 @@ export default function Dashboard() {
 
       {/* Charts Section */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Total Users Chart */}
-        <div className="lg:col-span-2 bg-white rounded-lg p-6 shadow-sm">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-lg font-semibold text-gray-900">Total Users</h2>
-            <div className="flex gap-2">
-              {['7 Days', '30 Days', 'Custom'].map((period) => (
-                <button
-                  key={period}
-                  className="px-3 py-1 text-sm text-gray-600 hover:bg-gray-100 rounded transition-colors"
-                >
-                  {period}
-                </button>
-              ))}
-            </div>
-          </div>
-          <div className="h-64 flex items-center justify-center bg-gray-50 rounded-lg">
-            <div className="text-center">
-              <svg className="w-16 h-16 text-gray-400 mx-auto mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-              </svg>
-              <p className="text-gray-600">Total user Chart Visualization</p>
-            </div>
-          </div>
-        </div>
+        <TotalUserChart />
 
         {/* Placeholder for additional card */}
         <div className="bg-white rounded-lg p-6 shadow-sm">
