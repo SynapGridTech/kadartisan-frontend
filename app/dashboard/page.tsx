@@ -14,21 +14,21 @@ interface StatCardProps {
 
 const StatCard = ({ icon, label, value, change, isPositive, changeLabel }: StatCardProps) => (
   <div className="bg-white rounded-lg p-6 shadow-sm">
-    <div className="flex items-start justify-between">
+    <div className="flex items-start gap-3">
+      <div className="bg-secondary p-3 rounded-lg text-white">{icon}</div>
       <div className="flex-1">
-        <p className="text-gray-600 text-sm mb-2">{label}</p>
+        <p className="text-gray-600 text-sm">{label}</p>
         <p className="text-2xl font-bold text-gray-900">{value}</p>
-        <p className={`text-sm mt-2 ${isPositive ? 'text-green-600' : 'text-red-600'}`}>
+        <p className={`text-sm ${isPositive ? 'text-green-600' : 'text-red-600'}`}>
           {isPositive ? '↑' : '↓'} {Math.abs(change)}% {changeLabel || ''}
         </p>
       </div>
-      <div className="bg-yellow-100 p-3 rounded-lg">{icon}</div>
     </div>
   </div>
 );
 
 const ChartIcon = () => (
-  <svg className="w-6 h-6 text-yellow-600" fill="currentColor" viewBox="0 0 20 20">
+  <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
     <path d="M10 12V2M5 15h10M2 18h16" stroke="currentColor" strokeWidth="2" fill="none" />
   </svg>
 );
@@ -156,6 +156,47 @@ export default function Dashboard() {
           </div>
         </div>
 
+        {/* Placeholder for additional card */}
+        <div className="bg-white rounded-lg p-6 shadow-sm">
+          <h2 className="text-lg font-semibold text-gray-900 mb-4">Summary</h2>
+          <div className="text-center text-gray-500 py-8">
+            <p>Additional metrics coming soon</p>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Section */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* New Users Today */}
+        <div className="bg-white rounded-lg p-6 shadow-sm">
+          <h2 className="text-lg font-semibold text-gray-900 mb-4">New users today</h2>
+          <div className="space-y-3">
+            <div>
+              <p className="text-3xl font-bold text-green-600">+14</p>
+              <p className="text-sm text-gray-600">Artisans</p>
+              <p className="text-xs text-green-600 mt-1">📈 vs yesterday</p>
+            </div>
+            <div className="pt-3 border-t">
+              <p className="text-3xl font-bold text-gray-900">+4</p>
+              <p className="text-sm text-gray-600">Customer</p>
+            </div>
+            <div className="pt-3 flex items-center justify-between">
+              <span className="text-xs text-gray-600">recent signups</span>
+              <div className="flex items-center">
+                <div className="flex -space-x-2 mr-2">
+                  {[1, 2, 3, 4].map((avatar) => (
+                    <div
+                      key={avatar}
+                      className="w-6 h-6 rounded-full bg-gray-300 border-2 border-white"
+                    />
+                  ))}
+                </div>
+                <span className="text-xs text-primary font-medium">+1</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Needs Attention */}
         <div className="bg-white rounded-lg p-6 shadow-sm">
           <h2 className="text-lg font-semibold text-gray-900 mb-6">Needs attention</h2>
@@ -182,29 +223,6 @@ export default function Dashboard() {
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Bottom Section */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {/* New Users Today */}
-        <div className="bg-white rounded-lg p-6 shadow-sm">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">New users today</h2>
-          <div className="space-y-3">
-            <div>
-              <p className="text-3xl font-bold text-green-600">+14</p>
-              <p className="text-sm text-gray-600">Artisans</p>
-              <p className="text-xs text-green-600 mt-1">📈 vs yesterday</p>
-            </div>
-            <div className="pt-3 border-t">
-              <p className="text-3xl font-bold text-gray-900">+4</p>
-              <p className="text-sm text-gray-600">Customer</p>
-            </div>
-            <div className="pt-3 flex items-center justify-between">
-              <span className="text-xs text-gray-600">recent signups</span>
-              <span className="text-xs text-primary font-medium">+1</span>
-            </div>
-          </div>
-        </div>
 
         {/* Job Status Breakdown */}
         <div className="bg-white rounded-lg p-6 shadow-sm">
@@ -217,13 +235,6 @@ export default function Dashboard() {
           </div>
         </div>
 
-        {/* Placeholder for additional card */}
-        <div className="bg-white rounded-lg p-6 shadow-sm">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">Summary</h2>
-          <div className="text-center text-gray-500 py-8">
-            <p>Additional metrics coming soon</p>
-          </div>
-        </div>
       </div>
     </div>
   );
