@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { MagnifyingGlassIcon, UserGroupIcon } from '@heroicons/react/24/solid';
+import { MagnifyingGlassIcon, UserGroupIcon, XMarkIcon } from '@heroicons/react/24/solid';
 import Dropdown from '@/app/components/ui/Dropdown';
 
 interface VerificationRow {
@@ -96,6 +96,8 @@ export default function VerificationsPage() {
   const [dateRange, setDateRange] = useState('all date');
   const [priority, setPriority] = useState('high');
   const [search, setSearch] = useState('');
+  const [selectedReview, setSelectedReview] = useState<VerificationRow | null>(null);
+  const [note, setNote] = useState('');
 
   return (
     <div className="space-y-6">
@@ -198,7 +200,10 @@ export default function VerificationsPage() {
                   </td>
                   <td className="px-4 py-3">Document</td>
                   <td className="px-4 py-3">
-                    <button className="rounded-full border border-gray-200 px-5 py-1.5 text-sm hover:bg-gray-50">
+                    <button
+                      onClick={() => setSelectedReview(row)}
+                      className="rounded-full border border-gray-200 px-5 py-1.5 text-sm hover:bg-gray-50"
+                    >
                       Review
                     </button>
                   </td>
@@ -208,6 +213,91 @@ export default function VerificationsPage() {
           </table>
         </div>
       </section>
+
+      {selectedReview ? (
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+          <button
+            aria-label="Close verification modal"
+            onClick={() => {
+              setSelectedReview(null);
+              setNote('');
+            }}
+            className="absolute inset-0 bg-black/45"
+          />
+
+          <section className="relative z-10 w-full max-w-3xl rounded-2xl bg-white p-6 shadow-2xl">
+            <header className="mb-6 flex items-center justify-between">
+              <h2 className="text-3xl font-semibold text-gray-800">Reviewing: {selectedReview.name}</h2>
+              <button
+                onClick={() => {
+                  setSelectedReview(null);
+                  setNote('');
+                }}
+                className="rounded-md p-1 text-gray-500 transition hover:bg-gray-100 hover:text-gray-700"
+              >
+                <XMarkIcon className="h-6 w-6" />
+              </button>
+            </header>
+
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-[220px_1fr]">
+              <div className="flex justify-center">
+                <div className="h-40 w-40 rounded-full bg-gray-200" />
+              </div>
+
+              <div className="space-y-4 text-sm">
+                <div className="grid grid-cols-[130px_1fr] items-center gap-4">
+                  <p className="font-semibold text-gray-700">Name:</p>
+                  <p className="text-gray-600">Abdullahi Sani</p>
+                </div>
+                <div className="grid grid-cols-[130px_1fr] items-center gap-4">
+                  <p className="font-semibold text-gray-700">Business:</p>
+                  <p className="text-gray-600">Textile &amp; Fabric</p>
+                </div>
+                <div className="grid grid-cols-[130px_1fr] items-center gap-4">
+                  <p className="font-semibold text-gray-700">Type:</p>
+                  <p className="text-gray-600">{selectedReview.type}</p>
+                </div>
+                <div className="grid grid-cols-[130px_1fr] items-center gap-4">
+                  <p className="font-semibold text-gray-700">Location:</p>
+                  <p className="text-gray-600">Kaduna, Nigeria</p>
+                </div>
+                <div className="grid grid-cols-[130px_1fr] items-center gap-4">
+                  <p className="font-semibold text-gray-700">NIN ID:</p>
+                  <div>
+                    <button className="rounded-full border border-gray-200 px-5 py-1 text-green-600 hover:bg-gray-50">
+                      View
+                    </button>
+                  </div>
+                </div>
+                <div className="grid grid-cols-[130px_1fr] items-center gap-4">
+                  <p className="font-semibold text-gray-700">Business cert:</p>
+                  <div>
+                    <button className="rounded-full border border-gray-200 px-5 py-1 text-green-600 hover:bg-gray-50">
+                      View
+                    </button>
+                  </div>
+                </div>
+                <div className="grid grid-cols-[130px_1fr] items-center gap-4">
+                  <p className="font-semibold text-gray-700">Address:</p>
+                  <p className="text-gray-600">No.31 Ungwari Sarki Kaduna</p>
+                </div>
+              </div>
+            </div>
+
+            <footer className="mt-8 flex flex-col gap-4 md:flex-row md:items-end">
+              <textarea
+                value={note}
+                onChange={(event) => setNote(event.target.value)}
+                placeholder="Write something(optional)"
+                className="h-24 w-full resize-none rounded-xl border border-gray-200 p-3 text-sm text-gray-700 outline-none focus:ring-2 focus:ring-primary/30"
+              />
+              <button className="h-10 rounded-full bg-green-600 px-6 text-sm font-semibold text-white transition hover:bg-green-700">
+                Send a note
+              </button>
+            </footer>
+          </section>
+        </div>
+      ) : null}
     </div>
   );
 }
