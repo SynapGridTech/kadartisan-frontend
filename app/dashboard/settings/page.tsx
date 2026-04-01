@@ -11,6 +11,7 @@ import {
   ShieldCheckIcon,
   TrashIcon,
 } from '@heroicons/react/24/solid';
+import Dropdown from '@/app/components/ui/Dropdown';
 
 type SettingsSection =
   | 'platform'
@@ -65,6 +66,11 @@ export default function GeneralSettingsPage() {
   const [autoBackup, setAutoBackup] = useState(true);
   const [anonymousUsage, setAnonymousUsage] = useState(true);
 
+  const [commissionType, setCommissionType] = useState('percentage of transaction');
+  const [defaultLanguage, setDefaultLanguage] = useState('english');
+  const [currency, setCurrency] = useState('nigerian naira (n)');
+  const [timeZone, setTimeZone] = useState('west africa time (utc+1)');
+
   return (
     <div className="space-y-5">
       <section>
@@ -73,7 +79,7 @@ export default function GeneralSettingsPage() {
       </section>
 
       <section className="grid grid-cols-1 gap-4 xl:grid-cols-[290px_1fr]">
-        <aside className="rounded-xl border border-gray-200 bg-white p-3 shadow-sm">
+        <aside className="self-start rounded-xl border border-gray-200 bg-white p-3 shadow-sm">
           <ul className="space-y-1">
             {sections.map((section) => {
               const Icon = section.icon;
@@ -137,12 +143,13 @@ export default function GeneralSettingsPage() {
                     className="h-10 w-full rounded-md border border-gray-200 px-3 text-sm text-gray-700 outline-none focus:ring-2 focus:ring-primary/30"
                   />
                 </label>
-                <label className="space-y-1">
-                  <span className="text-xs font-semibold text-gray-700">&nbsp;</span>
-                  <select className="h-10 w-full rounded-md border border-gray-200 px-3 text-sm text-gray-700 outline-none focus:ring-2 focus:ring-primary/30">
-                    <option>Percentage Of Transaction</option>
-                  </select>
-                </label>
+                <Dropdown
+                  id="commission-type"
+                  label="Commission Type"
+                  value={commissionType}
+                  options={['percentage of transaction', 'flat fee per order']}
+                  onChange={setCommissionType}
+                />
               </div>
 
               <div className="flex items-center justify-end gap-3 border-t border-gray-100 pt-4">
@@ -169,11 +176,11 @@ export default function GeneralSettingsPage() {
                 </div>
 
                 <div className="grid grid-cols-1 gap-3">
-                  <input defaultValue="KadArtisan" className="h-10 rounded-md border border-gray-200 px-3 text-sm" />
-                  <input defaultValue="Connecting Artisans With Opportunities" className="h-10 rounded-md border border-gray-200 px-3 text-sm" />
-                  <input defaultValue="support@kadartisan.com" className="h-10 rounded-md border border-gray-200 px-3 text-sm" />
-                  <input defaultValue="+234 800 123 4567" className="h-10 rounded-md border border-gray-200 px-3 text-sm" />
-                  <input defaultValue="123 Ahmadu Bello Way, Kaduna, Nigeria" className="h-10 rounded-md border border-gray-200 px-3 text-sm" />
+                  <input defaultValue="KadArtisan" className="h-10 rounded-md border border-gray-200 px-3 text-sm text-gray-700" />
+                  <input defaultValue="Connecting Artisans With Opportunities" className="h-10 rounded-md border border-gray-200 px-3 text-sm text-gray-700" />
+                  <input defaultValue="support@kadartisan.com" className="h-10 rounded-md border border-gray-200 px-3 text-sm text-gray-700" />
+                  <input defaultValue="+234 800 123 4567" className="h-10 rounded-md border border-gray-200 px-3 text-sm text-gray-700" />
+                  <input defaultValue="123 Ahmadu Bello Way, Kaduna, Nigeria" className="h-10 rounded-md border border-gray-200 px-3 text-sm text-gray-700" />
                 </div>
               </div>
 
@@ -258,7 +265,7 @@ export default function GeneralSettingsPage() {
 
                 <label className="space-y-1">
                   <span className="text-xs font-semibold text-gray-700">Session Timeout Duration (Minutes)</span>
-                  <input defaultValue="30" className="h-10 w-44 rounded-md border border-gray-200 px-3 text-sm" />
+                  <input defaultValue="30" className="h-10 w-44 rounded-md border border-gray-200 px-3 text-sm text-gray-700" />
                 </label>
 
                 <div className="space-y-2">
@@ -284,28 +291,27 @@ export default function GeneralSettingsPage() {
               </div>
 
               <div className="space-y-4 border-t border-gray-100 pt-4">
-                <label className="space-y-1">
-                  <span className="text-xs font-semibold text-gray-700">Default Language</span>
-                  <select className="h-10 w-full max-w-xs rounded-md border border-gray-200 px-3 text-sm">
-                    <option>English</option>
-                    <option>Hausa</option>
-                    <option>Yoruba</option>
-                    <option>Igbo</option>
-                    <option>Nigeria Pidgin</option>
-                  </select>
-                </label>
+                <Dropdown
+                  id="default-language"
+                  className="max-w-xs"
+                  label="Default Language"
+                  value={defaultLanguage}
+                  options={['english', 'hausa', 'yoruba', 'igbo', 'nigeria pidgin']}
+                  onChange={setDefaultLanguage}
+                />
 
-                <label className="space-y-1">
-                  <span className="text-xs font-semibold text-gray-700">Currency</span>
-                  <select className="h-10 w-full max-w-xs rounded-md border border-gray-200 px-3 text-sm">
-                    <option>Nigerian Naira (N)</option>
-                    <option>US Dollar ($)</option>
-                  </select>
-                </label>
+                <Dropdown
+                  id="currency"
+                  className="max-w-xs"
+                  label="Currency"
+                  value={currency}
+                  options={['nigerian naira (n)', 'us dollar ($)']}
+                  onChange={setCurrency}
+                />
 
                 <label className="space-y-1">
                   <span className="text-xs font-semibold text-gray-700">Session Timeout Duration (Minutes)</span>
-                  <input defaultValue="30" className="h-10 w-44 rounded-md border border-gray-200 px-3 text-sm" />
+                  <input defaultValue="30" className="h-10 w-44 rounded-md border border-gray-200 px-3 text-sm text-gray-700" />
                 </label>
 
                 <div className="space-y-2">
@@ -317,12 +323,13 @@ export default function GeneralSettingsPage() {
                   </div>
                 </div>
 
-                <label className="space-y-1">
-                  <span className="text-xs font-semibold text-gray-700">Time Zone</span>
-                  <select className="h-10 w-full rounded-md border border-gray-200 px-3 text-sm">
-                    <option>West Africa Time (UTC+1)</option>
-                  </select>
-                </label>
+                <Dropdown
+                  id="time-zone"
+                  label="Time Zone"
+                  value={timeZone}
+                  options={['west africa time (utc+1)', 'greenwich mean time (utc+0)']}
+                  onChange={setTimeZone}
+                />
               </div>
 
               <div className="flex items-center justify-end gap-3 border-t border-gray-100 pt-4">
@@ -358,7 +365,7 @@ export default function GeneralSettingsPage() {
 
                 <label className="space-y-1">
                   <span className="text-xs font-semibold text-gray-700">Data Retention Period (Days)</span>
-                  <input defaultValue="365" className="h-10 w-44 rounded-md border border-gray-200 px-3 text-sm" />
+                  <input defaultValue="365" className="h-10 w-44 rounded-md border border-gray-200 px-3 text-sm text-gray-700" />
                   <p className="text-xs text-gray-400">Logs And Inactive User Data Will Be Archived After This Period</p>
                 </label>
               </div>

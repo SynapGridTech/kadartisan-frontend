@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import {
   CalendarDaysIcon,
+  ChatBubbleLeftRightIcon,
   CheckIcon,
   MapPinIcon,
   PhoneIcon,
@@ -242,20 +243,23 @@ export default function JobsPage() {
             <div className="mt-3 grid grid-cols-3 gap-2">
               <button
                 type="button"
-                className="rounded-md border border-gray-200 px-2 py-1.5 text-xs font-medium text-gray-600 hover:bg-gray-50"
+                className="inline-flex items-center justify-center gap-1 rounded-md border border-gray-200 px-2 py-1.5 text-xs font-medium text-gray-600 hover:bg-gray-50"
               >
+                <PhoneIcon className="h-3.5 w-3.5" />
                 Call
               </button>
               <button
                 type="button"
-                className="rounded-md border border-gray-200 px-2 py-1.5 text-xs font-medium text-gray-600 hover:bg-gray-50"
+                className="inline-flex items-center justify-center gap-1 rounded-md border border-gray-200 px-2 py-1.5 text-xs font-medium text-gray-600 hover:bg-gray-50"
               >
+                <ChatBubbleLeftRightIcon className="h-3.5 w-3.5" />
                 Message
               </button>
               <button
                 type="button"
-                className="rounded-md border border-gray-200 px-2 py-1.5 text-xs font-medium text-gray-600 hover:bg-gray-50"
+                className="inline-flex items-center justify-center gap-1 rounded-md border border-gray-200 px-2 py-1.5 text-xs font-medium text-gray-600 hover:bg-gray-50"
               >
+                <MapPinIcon className="h-3.5 w-3.5" />
                 Directions
               </button>
             </div>

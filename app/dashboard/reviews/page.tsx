@@ -237,7 +237,7 @@ export default function ReviewsPage() {
                 className="inline-flex items-center justify-center gap-1 rounded border border-gray-200 px-2 py-1.5 text-xs text-gray-600 hover:bg-gray-50"
               >
                 {/* <ExclamationTriangleIcon className="h-3.5 w-3.5" /> */}
-                <EyeIcon className="w-5 h-5" />
+                <EyeIcon className="w-3.5 h-3.5" />
                 View
               </button>
               <button
@@ -267,7 +267,7 @@ export default function ReviewsPage() {
             className="absolute inset-0 bg-black/45"
           />
 
-          <section className="absolute right-0 top-0 z-10 h-full w-full max-w-130 overflow-hidden bg-white shadow-2xl">
+          <section className="absolute right-0 top-0 z-10 h-full w-full max-w-95 overflow-hidden bg-white shadow-2xl">
             <div className="flex h-full flex-col">
               <header className="flex items-center justify-between border-b border-gray-200 px-5 py-4">
                 <h2 className="text-xl font-semibold text-gray-800">Resolve Complaint</h2>
