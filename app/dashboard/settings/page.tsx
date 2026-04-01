@@ -175,12 +175,27 @@ export default function GeneralSettingsPage() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 gap-3">
-                  <input defaultValue="KadArtisan" className="h-10 rounded-md border border-gray-200 px-3 text-sm text-gray-700" />
-                  <input defaultValue="Connecting Artisans With Opportunities" className="h-10 rounded-md border border-gray-200 px-3 text-sm text-gray-700" />
-                  <input defaultValue="support@kadartisan.com" className="h-10 rounded-md border border-gray-200 px-3 text-sm text-gray-700" />
-                  <input defaultValue="+234 800 123 4567" className="h-10 rounded-md border border-gray-200 px-3 text-sm text-gray-700" />
-                  <input defaultValue="123 Ahmadu Bello Way, Kaduna, Nigeria" className="h-10 rounded-md border border-gray-200 px-3 text-sm text-gray-700" />
+                <div className="grid grid-cols-1 gap-4">
+                  <label className="space-y-1">
+                    <span className="text-xs font-semibold text-gray-700">Platform Name</span>
+                    <input defaultValue="KadArtisan" className="h-10 w-full rounded-md border border-gray-200 px-3 text-sm text-gray-700 outline-none focus:ring-2 focus:ring-primary/30" />
+                  </label>
+                  <label className="space-y-1">
+                    <span className="text-xs font-semibold text-gray-700">Tagline</span>
+                    <input defaultValue="Connecting Artisans With Opportunities" className="h-10 w-full rounded-md border border-gray-200 px-3 text-sm text-gray-700 outline-none focus:ring-2 focus:ring-primary/30" />
+                  </label>
+                  <label className="space-y-1">
+                    <span className="text-xs font-semibold text-gray-700">Support Email</span>
+                    <input defaultValue="support@kadartisan.com" className="h-10 w-full rounded-md border border-gray-200 px-3 text-sm text-gray-700 outline-none focus:ring-2 focus:ring-primary/30" />
+                  </label>
+                  <label className="space-y-1">
+                    <span className="text-xs font-semibold text-gray-700">Support Phone</span>
+                    <input defaultValue="+234 800 123 4567" className="h-10 w-full rounded-md border border-gray-200 px-3 text-sm text-gray-700 outline-none focus:ring-2 focus:ring-primary/30" />
+                  </label>
+                  <label className="space-y-1">
+                    <span className="text-xs font-semibold text-gray-700">Address</span>
+                    <input defaultValue="123 Ahmadu Bello Way, Kaduna, Nigeria" className="h-10 w-full rounded-md border border-gray-200 px-3 text-sm text-gray-700 outline-none focus:ring-2 focus:ring-primary/30" />
+                  </label>
                 </div>
               </div>
 
