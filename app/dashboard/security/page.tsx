@@ -119,8 +119,8 @@ export default function SecurityPage() {
   return (
     <div className="space-y-5">
       <section>
-        <h1 className="text-3xl font-semibold text-gray-800">Payment Settings</h1>
-        <p className="mt-1 text-sm text-gray-600">Configure payment gateways, fees, and financial rules for your platform</p>
+        <h1 className="text-3xl font-semibold text-gray-800">Security Settings</h1>
+        <p className="mt-1 text-sm text-gray-600">Manage authentication, access control, and data protection for your platform</p>
       </section>
 
       <section className="grid grid-cols-1 gap-4 xl:grid-cols-[290px_1fr]">
