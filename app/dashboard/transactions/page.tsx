@@ -335,14 +335,14 @@ export default function TransactionsPage() {
       </section>
 
       {activeTransaction ? (
-        <div className="fixed inset-0 z-50 flex items-center justify-end p-4">
+        <div className="fixed inset-0 z-50">
           <button
             aria-label="Close transaction modal"
             onClick={closeTransactionPanel}
             className="absolute inset-0 bg-black/45"
           />
 
-          <aside className="relative z-10 h-full max-h-[92vh] w-full max-w-95 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-2xl">
+          <aside className="absolute right-0 top-0 z-10 h-full w-full max-w-95 overflow-hidden bg-white shadow-2xl">
             <div className="flex h-full flex-col">
             <header className="flex items-center justify-between border-b border-gray-200 px-5 py-4">
               <h2 className="text-xl font-semibold text-gray-800">Transaction details</h2>

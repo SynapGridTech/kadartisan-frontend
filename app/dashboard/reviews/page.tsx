@@ -5,6 +5,7 @@ import {
   BriefcaseIcon,
   ChatBubbleLeftRightIcon,
   ExclamationTriangleIcon,
+  EyeIcon,
   FlagIcon,
   MagnifyingGlassIcon,
   StarIcon,
@@ -235,7 +236,8 @@ export default function ReviewsPage() {
                 onClick={() => setActiveReviewId(item.id)}
                 className="inline-flex items-center justify-center gap-1 rounded border border-gray-200 px-2 py-1.5 text-xs text-gray-600 hover:bg-gray-50"
               >
-                <ExclamationTriangleIcon className="h-3.5 w-3.5" />
+                {/* <ExclamationTriangleIcon className="h-3.5 w-3.5" /> */}
+                <EyeIcon className="w-5 h-5" />
                 View
               </button>
               <button
@@ -258,23 +260,23 @@ export default function ReviewsPage() {
       </section>
 
       {activeReview ? (
-        <div className="fixed inset-0 z-50 flex items-center justify-end p-4">
+        <div className="fixed inset-0 z-50">
           <button
             aria-label="Close review modal"
             onClick={closeModal}
             className="absolute inset-0 bg-black/45"
           />
 
-          <section className="relative z-10 h-full max-h-[92vh] w-full max-w-130 overflow-hidden rounded-2xl bg-white shadow-2xl">
+          <section className="absolute right-0 top-0 z-10 h-full w-full max-w-130 overflow-hidden bg-white shadow-2xl">
             <div className="flex h-full flex-col">
               <header className="flex items-center justify-between border-b border-gray-200 px-5 py-4">
-                <h2 className="text-3xl font-semibold text-gray-800">Resolve Complaint</h2>
+                <h2 className="text-xl font-semibold text-gray-800">Resolve Complaint</h2>
                 <button
                   type="button"
                   onClick={closeModal}
                   className="rounded-md p-1 text-gray-500 transition hover:bg-gray-100 hover:text-gray-700"
                 >
-                  <XMarkIcon className="h-8 w-8" />
+                  <XMarkIcon className="h-6 w-6" />
                 </button>
               </header>
 
@@ -283,7 +285,7 @@ export default function ReviewsPage() {
                   <div className="flex items-center gap-2">
                     <div className="h-10 w-10 rounded-full bg-amber-200" />
                     <div>
-                      <p className="text-2xl font-semibold text-gray-800">{activeReview.name}</p>
+                      <p className="text-lg font-semibold text-gray-800">{activeReview.name}</p>
                       <p className="text-xs text-gray-400">{activeReview.role} · {activeReview.timeAgo}</p>
                       <div className="mt-1 flex items-center">{stars(activeReview.rating)}</div>
                     </div>
@@ -302,29 +304,29 @@ export default function ReviewsPage() {
                   {activeReview.category}
                 </p>
 
-                <p className="mt-3 rounded-md bg-[#f5f0e2] px-3 py-2 text-[28px] text-gray-700">{activeReview.text}</p>
+                <p className="mt-3 rounded-md bg-[#f5f0e2] px-3 py-2 text-sm text-gray-700">{activeReview.text}</p>
 
                 <dl className="mt-4 divide-y divide-gray-100">
                   <div className="grid grid-cols-[1fr_auto] gap-4 py-3">
-                    <dt className="text-3xl text-gray-500">Job</dt>
-                    <dd className="text-3xl font-medium text-gray-800">{activeReview.job}</dd>
+                    <dt className="text-base text-gray-500">Job</dt>
+                    <dd className="text-base font-medium text-gray-800">{activeReview.job}</dd>
                   </div>
                   <div className="grid grid-cols-[1fr_auto] gap-4 py-3">
-                    <dt className="text-3xl text-gray-500">Customer</dt>
-                    <dd className="text-3xl font-medium text-gray-800">{activeReview.customer}</dd>
+                    <dt className="text-base text-gray-500">Customer</dt>
+                    <dd className="text-base font-medium text-gray-800">{activeReview.customer}</dd>
                   </div>
                   <div className="grid grid-cols-[1fr_auto] gap-4 py-3">
-                    <dt className="text-3xl text-gray-500">Artisan</dt>
-                    <dd className="text-3xl font-medium text-gray-800">{activeReview.artisan}</dd>
+                    <dt className="text-base text-gray-500">Artisan</dt>
+                    <dd className="text-base font-medium text-gray-800">{activeReview.artisan}</dd>
                   </div>
                   <div className="grid grid-cols-[1fr_auto] gap-4 py-3">
-                    <dt className="text-3xl text-gray-500">Submitted</dt>
-                    <dd className="text-3xl font-medium text-gray-800">{activeReview.submitted}</dd>
+                    <dt className="text-base text-gray-500">Submitted</dt>
+                    <dd className="text-base font-medium text-gray-800">{activeReview.submitted}</dd>
                   </div>
                 </dl>
 
                 <div className="mt-4">
-                  <label htmlFor="resolution-notes" className="text-4xl font-semibold text-gray-800">
+                  <label htmlFor="resolution-notes" className="text-base font-semibold text-gray-800">
                     Resolution Notes
                   </label>
                   <textarea
@@ -340,13 +342,13 @@ export default function ReviewsPage() {
                 <div className="flex items-center justify-between gap-3">
                   <button
                     type="button"
-                    className="rounded-xl border border-green-300 px-9 py-2 text-3xl font-semibold text-green-600 hover:bg-green-50"
+                    className="rounded-xl border border-green-300 px-9 py-2 text-base font-semibold text-green-600 hover:bg-green-50"
                   >
                     Send
                   </button>
                   <button
                     type="button"
-                    className="rounded-xl border border-red-300 px-9 py-2 text-3xl font-semibold text-red-500 hover:bg-red-50"
+                    className="rounded-xl border border-red-300 px-9 py-2 text-base font-semibold text-red-500 hover:bg-red-50"
                   >
                     Block amount
                   </button>
