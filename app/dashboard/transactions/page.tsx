@@ -29,7 +29,6 @@ interface TransactionRow {
   status: TransactionStatus;
   time: string;
   created: string;
-  selectedByDefault?: boolean;
 }
 
 const statCards = [
@@ -73,7 +72,6 @@ const rows: TransactionRow[] = [
     status: 'Completed',
     time: '10:23 AM',
     created: 'Mar 15, 10:23 AM',
-    selectedByDefault: true,
   },
   {
     id: 'T2382',
@@ -163,8 +161,8 @@ export default function TransactionsPage() {
   const [allStatus, setAllStatus] = useState('select status');
   const [search, setSearch] = useState('');
 
-  const [selectedIds, setSelectedIds] = useState<string[]>(['T2381']);
-  const [activeTransactionId, setActiveTransactionId] = useState<string>('T2381');
+  const [selectedIds, setSelectedIds] = useState<string[]>([]);
+  const [activeTransactionId, setActiveTransactionId] = useState<string>('');
 
   const activeTransaction = useMemo(
     () => rows.find((row) => row.id === activeTransactionId) ?? null,
@@ -337,8 +335,15 @@ export default function TransactionsPage() {
       </section>
 
       {activeTransaction ? (
-        <aside className="fixed right-0 top-24 z-50 h-[calc(100vh-6rem)] w-full max-w-95 border-l border-gray-200 bg-white shadow-2xl">
-          <div className="flex h-full flex-col">
+        <div className="fixed inset-0 z-50 flex items-center justify-end p-4">
+          <button
+            aria-label="Close transaction modal"
+            onClick={closeTransactionPanel}
+            className="absolute inset-0 bg-black/45"
+          />
+
+          <aside className="relative z-10 h-full max-h-[92vh] w-full max-w-95 overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-2xl">
+            <div className="flex h-full flex-col">
             <header className="flex items-center justify-between border-b border-gray-200 px-5 py-4">
               <h2 className="text-xl font-semibold text-gray-800">Transaction details</h2>
               <button
@@ -436,8 +441,9 @@ export default function TransactionsPage() {
                 </button>
               </div>
             </footer>
-          </div>
-        </aside>
+            </div>
+          </aside>
+        </div>
       ) : null}
     </div>
   );
