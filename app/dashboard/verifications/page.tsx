@@ -218,7 +218,7 @@ export default function VerificationsPage() {
         </div>
       </section>
 
-      {selectedReview ? (
+      {selectedReview && !documentPreview ? (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
           <button
             aria-label="Close verification modal"
@@ -308,11 +308,11 @@ export default function VerificationsPage() {
               </div>
             </div>
 
-            <footer className="mt-8 flex flex-col gap-4 md:flex-row md:items-end">
+            <footer className="mt-8 flex flex-col gap-4">
               <textarea
                 value={note}
                 onChange={(event) => setNote(event.target.value)}
-                placeholder="Write something(optional)"
+                placeholder="Write something (optional)"
                 className="h-24 w-full resize-none rounded-xl border border-gray-200 p-3 text-sm text-gray-700 outline-none focus:ring-2 focus:ring-primary/30"
               />
               <button className="h-10 rounded-full bg-green-600 px-6 text-sm font-semibold text-white transition hover:bg-green-700">
@@ -323,8 +323,8 @@ export default function VerificationsPage() {
         </div>
       ) : null}
 
-      {documentPreview ? (
-        <div className="fixed inset-0 z-[60] p-2 sm:p-4">
+      {selectedReview && documentPreview ? (
+        <div className="fixed inset-0 z-60 p-2 sm:p-4">
           <button
             type="button"
             aria-label="Close document preview"
@@ -332,8 +332,9 @@ export default function VerificationsPage() {
             className="absolute inset-0 bg-black/85"
           />
 
-          <section className="relative mx-auto h-full max-h-[92vh] w-full max-w-4xl overflow-hidden rounded-sm bg-[#141414] text-white shadow-2xl">
-            <header className="flex items-center justify-end border-b-2 border-sky-500 px-4 py-3">
+          <section className="relative mx-auto flex h-full max-h-[92vh] w-full max-w-5xl flex-col overflow-hidden rounded-sm bg-[#141414] text-white shadow-2xl">
+            <header className="flex items-center justify-between border-b border-white/10 px-4 py-3">
+              <p className="text-sm font-medium text-white/90">{documentPreview.title}</p>
               <button
                 type="button"
                 onClick={() => setDocumentPreview(null)}
@@ -343,19 +344,17 @@ export default function VerificationsPage() {
               </button>
             </header>
 
-            <div className="flex h-[calc(100%-88px)] flex-col items-center justify-center gap-6 px-4 pb-6 pt-5 sm:px-8">
-              <div className="w-full max-w-md rounded-sm bg-white p-5 shadow-lg">
-                <div className="aspect-[3/4] w-full rounded border-[3px] border-green-300 bg-gradient-to-b from-white via-gray-50 to-white p-4 text-center text-gray-800">
-                  <p className="text-xs font-semibold uppercase tracking-wide">Federal Republic of Nigeria</p>
-                  <p className="mt-2 text-base font-bold">Certificate Of Incorporation</p>
-                  <p className="mt-1 text-xs text-gray-500">{documentPreview.title}</p>
-                  <div className="mx-auto mt-6 h-40 w-32 rounded border border-gray-300" />
-                  <p className="mt-4 text-xs text-gray-500">
-                    Preview {documentPreview.documentType === 'nin' ? 'NIN document' : 'business certificate'}
-                  </p>
-                </div>
+            <div className="flex-1 overflow-auto bg-[#0f0f0f] p-3 sm:p-5">
+              <div className="mx-auto h-[78vh] w-full max-w-4xl overflow-hidden rounded bg-white shadow-lg">
+                <iframe
+                  src="/docs/original.pdf"
+                  title={documentPreview.documentType === 'nin' ? 'NIN document' : 'Business certificate'}
+                  className="h-full w-full"
+                />
               </div>
+            </div>
 
+            <footer className="border-t border-white/10 px-4 py-4">
               <div className="flex flex-wrap items-center justify-center gap-4">
                 <button
                   type="button"
@@ -376,7 +375,7 @@ export default function VerificationsPage() {
                   Reject
                 </button>
               </div>
-            </div>
+            </footer>
           </section>
         </div>
       ) : null}
