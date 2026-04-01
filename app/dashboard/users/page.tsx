@@ -121,7 +121,7 @@ export default function AllUsersPage() {
             className="min-w-40"
             label="Typical user types"
             value={selectedUserType}
-            options={['Artisan', 'Customer', 'All']}
+            options={['All', 'Artisan', 'Customer']}
             onChange={(value) => setSelectedUserType(value as UserType | 'All')}
           />
 

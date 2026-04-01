@@ -157,8 +157,8 @@ function formatNaira(value: number): string {
 }
 
 export default function TransactionsPage() {
-  const [allTypes, setAllTypes] = useState('select types');
-  const [amountRange, setAmountRange] = useState('select amount range');
+  const [allTypes, setAllTypes] = useState('select type');
+  const [amountRange, setAmountRange] = useState('select amount');
   const [dateRange, setDateRange] = useState('select date');
   const [allStatus, setAllStatus] = useState('select status');
   const [search, setSearch] = useState('');
@@ -201,28 +201,28 @@ export default function TransactionsPage() {
             id="tx-all-types"
             label="All types"
             value={allTypes}
-            options={['select types', 'payment', 'withdraw', 'payout']}
+            options={['select type', 'withdraw', 'payout', 'payment']}
             onChange={setAllTypes}
           />
           <Dropdown
             id="tx-amount-range"
             label="Amount range"
             value={amountRange}
-            options={['select amount range', 'N0 - N10,000', 'N10,001 - N50,000', 'N50,001+']}
+            options={['select amount', '< ₦10k', '₦10k-50k', '₦50k-100k', '> ₦100k']}
             onChange={setAmountRange}
           />
           <Dropdown
             id="tx-date-range"
             label="Date range"
             value={dateRange}
-            options={['select date', 'today', 'this week', 'this month']}
+            options={['select date', 'today', 'yesterday', 'this week', 'this month']}
             onChange={setDateRange}
           />
           <Dropdown
             id="tx-all-status"
             label="All status"
             value={allStatus}
-            options={['select status', 'completed', 'pending', 'failed', 'dispatched', 'refund']}
+            options={['select status', 'competed', 'pending', 'failed', 'disputes']}
             onChange={setAllStatus}
           />
         </div>

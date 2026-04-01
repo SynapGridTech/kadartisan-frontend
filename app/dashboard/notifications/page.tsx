@@ -1,11 +1,13 @@
 'use client';
 
+import { useState } from 'react';
 import {
   BellAlertIcon,
   CheckCircleIcon,
   MapPinIcon,
   PaperAirplaneIcon,
 } from '@heroicons/react/24/solid';
+import Dropdown from '@/app/components/ui/Dropdown';
 
 const notifications = [
   {
@@ -75,50 +77,45 @@ const priorityOptions = ['high', 'medium', 'low', 'all'];
 const userTypeOptions = ['artisans', 'customers', 'all'];
 
 export default function NotificationsPage() {
+  const [category, setCategory] = useState('verification');
+  const [priority, setPriority] = useState('high');
+  const [userType, setUserType] = useState('artisans');
+
   return (
     <div className="space-y-6">
-      <section className="rounded-lg bg-white p-4 shadow-sm">
+      {/* <section className="rounded-lg bg-white p-4 shadow-sm"> */}
         <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
           <div className="grid w-full grid-cols-1 gap-3 md:grid-cols-3 lg:max-w-3xl">
-            <label className="flex flex-col gap-1">
-              <span className="text-[10px] font-semibold uppercase tracking-wide text-gray-500">Category</span>
-              <select defaultValue="verification" className="rounded-md border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-700 outline-none focus:ring-2 focus:ring-primary">
-                {categoryOptions.map((option) => (
-                  <option key={option} value={option}>
-                    {option.charAt(0).toUpperCase() + option.slice(1)}
-                  </option>
-                ))}
-              </select>
-            </label>
+            <Dropdown
+              id="notification-category"
+              label="Category"
+              value={category}
+              options={categoryOptions}
+              onChange={setCategory}
+            />
 
-            <label className="flex flex-col gap-1">
-              <span className="text-[10px] font-semibold uppercase tracking-wide text-gray-500">Priority level</span>
-              <select defaultValue="high" className="rounded-md border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-700 outline-none focus:ring-2 focus:ring-primary">
-                {priorityOptions.map((option) => (
-                  <option key={option} value={option}>
-                    {option.charAt(0).toUpperCase() + option.slice(1)}
-                  </option>
-                ))}
-              </select>
-            </label>
+            <Dropdown
+              id="notification-priority"
+              label="Priority level"
+              value={priority}
+              options={priorityOptions}
+              onChange={setPriority}
+            />
 
-            <label className="flex flex-col gap-1">
-              <span className="text-[10px] font-semibold uppercase tracking-wide text-gray-500">Typical user types</span>
-              <select defaultValue="artisans" className="rounded-md border border-gray-200 bg-gray-50 px-3 py-2 text-sm text-gray-700 outline-none focus:ring-2 focus:ring-primary">
-                {userTypeOptions.map((option) => (
-                  <option key={option} value={option}>
-                    {option.charAt(0).toUpperCase() + option.slice(1)}
-                  </option>
-                ))}
-              </select>
-            </label>
+            <Dropdown
+              id="notification-user-type"
+              label="Typical user types"
+              value={userType}
+              options={userTypeOptions}
+              onChange={setUserType}
+            />
           </div>
 
           <button className="inline-flex items-center justify-center rounded-md bg-green-100 px-4 py-2 text-sm font-medium text-green-800 hover:bg-green-200 transition-colors">
             Mark all as read
           </button>
         </div>
-      </section>
+      {/* </section> */}
 
       <section className="space-y-3">
         {notifications.map((item) => (
