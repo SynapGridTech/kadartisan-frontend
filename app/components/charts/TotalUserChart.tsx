@@ -45,7 +45,7 @@ const chartOptions: ChartOptions<'bar'> = {
   },
   scales: {
     x: {
-      grid: { display: false, drawBorder: false },
+      grid: { display: false },
       border: { display: false },
       ticks: {
         color: '#4B5563',
@@ -60,7 +60,7 @@ const chartOptions: ChartOptions<'bar'> = {
         color: '#374151',
         font: { size: 12 },
       },
-      grid: { display: false, drawBorder: false },
+      grid: { display: false },
       border: { display: false },
     },
   },
