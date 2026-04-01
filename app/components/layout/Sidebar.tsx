@@ -53,7 +53,7 @@ const Sidebar = () => {
       title: 'SETTINGS',
       items: [
         { icon: CogIcon, label: 'General Settings', href: '/dashboard/settings' },
-        { icon: ShieldCheckIcon, label: 'Payment Settings', href: '/dashboard/payment' },
+        { icon: ShieldCheckIcon, label: 'Payment Settings', href: '/dashboard/payments' },
         { icon: SparklesIcon, label: 'Security', href: '/dashboard/security' },
       ],
     },
