@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* =========================
+   Theme Variables
+   ========================= */
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -10,12 +13,13 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --color-primary: var(--primary);     /* ✅ references --primary from :root */
-  --color-secondary: var(--secondary); /* ✅ references --secondary from :root */
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
+/* Dark Mode */
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
@@ -25,18 +29,35 @@
   }
 }
 
+/* =========================
+   Base Styles
+   ========================= */
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
-/* Hide scrollbars but keep scroll functionality */
+/* Fluid Typography */
 html {
+  font-size: 100%;
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
 
+@media (max-width: 640px) {
+  html { font-size: 90%; }
+}
+
+@media (min-width: 1280px) {
+  html { font-size: 110%; }
+}
+
+/* =========================
+   Scrollbar Utilities
+   ========================= */
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -46,7 +67,10 @@ html {
   display: none;
 }
 
-/* ✅ Custom checkbox — accessible globally */
+/* =========================
+   Form Controls
+   ========================= */
+/* Custom Checkbox */
 input[type="checkbox"] {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -76,7 +100,7 @@ input[type="checkbox"]:checked::after {
   transform: translate(-50%, -60%) rotate(45deg);
 }
 
-/* ✅ Custom radio button — accessible globally */
+/* Custom Radio */
 input[type="radio"] {
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -104,4 +128,42 @@ input[type="radio"]:checked::after {
   border-radius: 50%;
   background-color: var(--primary);
   transform: translate(-50%, -50%);
+}
+
+/* =========================
+   Responsive Utilities
+   ========================= */
+/* Container */
+.container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) { .container { max-width: 640px; } }
+@media (min-width: 768px) { .container { max-width: 768px; } }
+@media (min-width: 1024px) { .container { max-width: 1024px; } }
+@media (min-width: 1280px) { .container { max-width: 1280px; } }
+
+/* Images */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Responsive Grid */
+.responsive-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .responsive-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1024px) {
+  .responsive-grid { grid-template-columns: repeat(3, 1fr); }
 }
